@@ -1,17 +1,23 @@
 // ==UserScript==
-// @name         Animeflv pending episodes
-// @namespace    http://tampermonkey.net/
-// @version      0.1
-// @description  Get pending episodes in following series
-// @author       d0whc3r
-// @copyright 2018, d0whc3r (https://github.com/d0whc3r)
-// @license MIT
-// @match        https://animeflv.net/perfil/*/siguiendo
-// @grant        none
+// @author d0whc3r
+// @namespace     https://openuserjs.org/users/d0whc3r
+// @name          Animeflv pending episodes
+// @description   Get pending episodes in following series
+// @copyright     2018, d0whc3r (https://openuserjs.org/users/d0whc3r)
+// @license       MIT
+// @version       0.1.2
+// @include       https://animeflv.net/perfil/*/siguiendo*
+// @include       https://animeflv.net/perfil/*/favoritos*
+// @include       https://animeflv.net/perfil/*/lista_espera*
+// @grant none
 // @require https://momentjs.com/downloads/moment.js
 // ==/UserScript==
 
-(function() {
+// ==OpenUserJS==
+// @author d0whc3r
+// ==/OpenUserJS==
+
+(function () {
     'use strict';
 
     function parseInfo(data) {
@@ -42,18 +48,22 @@
                 cache: true,
                 dataType: 'html',
                 method: 'GET',
-                success: function(data) {
+                success: function (data) {
                     let info = parseInfo(data);
-                    const nextDate = moment(info.anime_info[3]);
+                    const nextDate = info.anime_info[3] && moment(info.anime_info[3]);
                     const lastEpisode = parseInt(info.episodes[0][0]);
                     const totalEpisodes = info.episodes.length;
                     const lastSeen = parseInt(info.last_seen);
                     if (lastEpisode !== lastSeen) {
-                        title.attr({style: 'color: red'});
+                        title.attr({
+                            style: 'color: red'
+                        });
                         const text = title.text();
                         title.text(`${text} [${lastEpisode - lastSeen}/${totalEpisodes}]`);
-                    } else if (moment().dayOfYear() === nextDate.dayOfYear()) {
-                        title.attr({style: 'color: green'});
+                    } else if (nextDate && moment().dayOfYear() === nextDate.dayOfYear()) {
+                        title.attr({
+                            style: 'color: green'
+                        });
                     }
                 },
             });
