@@ -4,6 +4,8 @@
 // @version      0.1
 // @description  Get pending episodes in following series
 // @author       d0whc3r
+// @copyright 2018, d0whc3r (https://github.com/d0whc3r)
+// @license MIT
 // @match        https://animeflv.net/perfil/*/siguiendo
 // @grant        none
 // @require https://momentjs.com/downloads/moment.js
