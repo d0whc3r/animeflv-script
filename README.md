@@ -16,4 +16,4 @@ Script for animeflv and following series
 
 #### Step 2: UserScripts
 
-- [Animeflv pending episodes](https://github.com/d0whc3r/animeflv-script/raw/master/animeflv.user.js)
+- [Animeflv pending episodes](https://github.com/d0whc3r/animeflv-script/raw/refs/heads/master/animeflv.user.js)
