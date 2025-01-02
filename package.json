@@ -1,0 +1,23 @@
+{
+  "name": "animeflv-script",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Script for animeflv and following series",
+  "main": "animeflv.user.js",
+  "keywords": [],
+  "author": "d0whc3r",
+  "license": "ISC",
+  "scripts": {
+    "lint-staged": "lint-staged",
+    "prepare": "husky",
+    "format": "prettier --write *.js *.mjs"
+  },
+  "devDependencies": {
+    "husky": "9.1.7",
+    "lint-staged": "15.3.0",
+    "prettier": "3.4.2"
+  },
+  "lint-staged": {
+    "**/*.{mjs,js}": "prettier --write --ignore-unknown"
+  }
+}
